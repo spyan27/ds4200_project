@@ -8,7 +8,7 @@ let margin = {
   top: 50,
   right: 50,
   bottom: 50,
-  left: 50
+  left: 70  // increased for y-axis label
 }
 
 let svg = d3.select('body')
@@ -35,16 +35,34 @@ d3.csv("yearly_avg_price_trends.csv").then(data => {
       .domain([0, d3.max(data, d => d.avg_price)])
       .range([height - margin.bottom, margin.top]);
 
-  // draw axes
+  // draw x-axis
   svg.append("g")
-  .attr("transform", `translate(0, ${height - margin.bottom})`)
-  .call(d3.axisBottom(xScale)
-    .tickValues(data.map(d => d.year))
-    .tickFormat(d3.format("d")));
+    .attr("transform", `translate(0, ${height - margin.bottom})`)
+    .call(d3.axisBottom(xScale)
+      .tickValues(data.map(d => d.year))
+      .tickFormat(d3.format("d")));
 
+  // x-axis label
+  svg.append("text")
+    .attr("x", width / 2)
+    .attr("y", height - 10)
+    .attr("text-anchor", "middle")
+    .style("font-size", "14px")
+    .text("Year");
+
+  // draw y-axis
   svg.append("g")
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(d3.axisLeft(yScale));
+
+  // y-axis label
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -height / 2)
+    .attr("y", 15)
+    .attr("text-anchor", "middle")
+    .style("font-size", "14px")
+    .text("Average Price ($)");
 
   // draw circles
   svg.selectAll("circle")

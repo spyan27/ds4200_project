@@ -12,39 +12,25 @@
 
     <h3>Overall Introduction</h3>
 
-    <p>Understanding the US unemployment rate is crucial for assessing
-        the health of the economy and the well-being of its citizens. 
-        The unemployment rate represents the percentage of people in 
-        labor force who are actively seeking employment but are unable
-        to find jobs. This metric serves as a key indicator of economic
-         performance, reflecting the availability of job opportunities 
-         and the overall level of economic activity. </p>
+    <p>This project explores how the prices of patient-administered 
+        drugs covered under Medicare Part D changed from 2019 to 2023. 
+        In the first part, we want to investigate the changes through 
+        the Covid-19, manufacturer-level shifts, and evolving health 
+        policy landscapes. Our goal is to make drug pricing trends more 
+        transparent by identifying price hikes, mapping policy effects, 
+        and visualizing how costs vary by manufacturer. In the second part, 
+        we put these prices in context of the users of Medicare, mainly 
+        elderly age 65+. We identify the top 5 chronic conditions affecting 
+        this group, and group drug pricing trends by diseases they treat. 
+        This website features both accessible dashboards and static visuals 
+        that help both policy makers and patients understand where spending 
+        is growing and why. (can add more details later)</p>
+    
 
-    <p>Monitoring the unemployment rate provides insights into 
-        various aspects of the economy, such as consumer spending,
-         business confidence, and government policies' effectiveness.
-        A high unemployment rate may indicate economic downturns, 
-        leading to decreased consumer spending, reduced business 
-        investments, and potential social unrest. Conversely, 
-        a low unemployment rate signifies a robust economy with 
-        ample job opportunities, contributing to higher consumer 
-        confidence and economic growth.</p>
+    <p>To learn more about the Medicare Drug D data, go to  rate and its implications,
+         you can visit the <a href=https://www.medicare.gov/health-drug-plans/part-d>Medicare.gov website</a>.
 
-    <p>Several social factors are closely related to the unemployment
-         rate. Persistent unemployment can lead to financial hardships,
-          increased poverty rates, and reduced access to essential 
-          services, such as healthcare and education. Moreover, 
-          unemployment may exacerbate existing social inequalities, 
-          disproportionately affecting marginalized communities, 
-          including minorities, youth, and individuals with lower 
-          educational attainment.</p>
-
-    <p>To learn more about the US unemployment rate and its implications,
-         you can visit the <a href="https://www.bls.gov/">Bureau of Labor Statistics website</a> or explore 
-         analysis reports from reputable research organizations like 
-         <a href="https://www.pewresearch.org/">Pew Research Center</a>.</p>
-
-    <h3>Introduction to the data</h3>
+    <h3>Introduction to the data (to be replaced)</h3>
 
     <p> Our analysis makes use of two datasets. the first data is 
         a data set called `us_statewide_crime.csv` which contains 
@@ -125,30 +111,21 @@
                 are the ones with the much higher unemplyment rate.
             </p>
 
-        <h3>Overview of the Unemployment rate</h3>
+        <h3>Overview of the Pricing Trends</h3>
         
         <div class = 'container'>
             <div class = 'image'>
-                <!-- <iframe src="histogram/index.html" width="100%" height="400px" frameborder="0"></iframe>-->
-                <iframe src="finish.png" width="100%" height="400px" frameborder="0"></iframe>
+                <img src="d3-lineplot-avg-drug-price.png" width="100%" height="500px" alt="Average Drug Price 2019-2023">
             </div>
             <div class = 'text'>
-                <p> First, we present an overview of the unemployment rate
-                    for all 50 states. Alaska is the one with the 
-                    highest unemployment rate, which may due to the seasonal 
-                    business in the state. The effectiveness of labor market 
-                    policies and governance structures can influence unemployment 
-                    rates. Washington, D.C., being the seat of government, may 
-                    experience fluctuations in employment related to government 
-                    spending and policies. Mississippi and Louisiana have economies 
-                    that are heavily reliant on sectors such as agriculture, 
-                    manufacturing, and energy. Economic downturns or fluctuations 
-                    in these industries can impact employment opportunities. 
-                    Connecticut, South Dakota and Virginia have the lowest 
-                    unemplyment rate. These states often have diverse economies 
-                    with strong sectors such as technology, healthcare, finance, 
-                    and tourism. A diverse economy can provide more resilience to 
-                    economic downturns.
+                <p> First, we present an overview of the average drug price
+                    from 2019 to 2023. The average price shows a steady increase
+                    in average Part D drug prices from 2019 to 2023, with average
+                    prices rising from approximately $305 to $563 over this period.
+                    We hypothesize that this increase may be attributed to several
+                    factors, including inflationary pressures, supply chain disruptions,
+                    and changes in healthcare policies during the COVID-19 pandemic.
+                    We will explore that further in later sections.
                 </p>
             </div>            
         </div>
