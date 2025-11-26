@@ -115,7 +115,7 @@
         
         <div class = 'container'>
             <div class = 'image'>
-                <img src="d3-lineplot-avg-drug-price.png" width="100%" height="500px" alt="Average Drug Price 2019-2023">
+                <img src="d3-lineplot-avg-drug-price.png" width="100%" height="450px" alt="Average Drug Price 2019-2023">
             </div>
             <div class = 'text'>
                 <p> First, we present an overview of the average drug price
@@ -130,9 +130,23 @@
             </div>            
         </div>
 
-        <div class = 'center'>
-                <iframe src="altair.html" width="80%" height="400px" frameborder="0"></iframe>
+        <h3>Overview of the Pricing Trends</h3>
+
+        <div class='center' style="text-align:center;">
+            <iframe src="altair.html" width="100%" height="600px" frameborder="0"></iframe>
+            <p style="margin-top:10px;">
+                Using the dropdown menu, we can look at each of the five chronic conditions individually 
+                and compare their total claims and average spending per claim from 2019 to 2023. Looking 
+                at the visualization, we can see that for hypertension, the total number of claims is the 
+                highest every year and increases slightly from around 253 million claims in 2019 to around 
+                270 million claims in 2023, a growth of roughly 6.7%. However, the average spending per claim 
+                rises much more sharply, from around $1,501 in 2019 to about $2,003 in 2023, increasing 
+                roughly 33%. This suggests that while the overall use of hypertension medications remained 
+                relatively stable with a slight increase, the cost per prescription fill has grown 
+                significantly over time.
+            </p>
         </div>
+
 
         <div class='tableauPlaceholder' id='viz1764032155428' style='position: relative'><noscript><a href='#'><img alt='Manufacturer Total Spending Treemap ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='medicare_project&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1764032155428');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
 
