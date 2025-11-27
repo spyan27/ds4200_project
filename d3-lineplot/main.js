@@ -72,7 +72,7 @@ d3.csv("yearly_avg_price_trends.csv").then(data => {
     .attr("r", 4)
     .attr("cx", d => xScale(d.year))
     .attr("cy", d => yScale(d.avg_price))
-    .attr("fill", "green");
+    .attr("fill", "blue");
 
   // line generator
   let line = d3.line()
@@ -84,7 +84,7 @@ d3.csv("yearly_avg_price_trends.csv").then(data => {
   svg.append("path")
     .datum(data)
     .attr("fill", "none")
-    .attr("stroke", "green")
+    .attr("stroke", "blue")
     .attr("stroke-width", 1.5)
     .attr("d", line);
 

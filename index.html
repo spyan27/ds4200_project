@@ -17,13 +17,14 @@
         Medicare Part D is defined as prescription drug coverage for Medicare 
         enrollees. Original Medicare (Parts A & B) does NOT cover prescription 
         medications, so Part D fills that gap. In the first part, we want to 
-        investigate general pricing changes during this period. 
-        Our goal is to make drug pricing trends more 
-        transparent by identifying price hikes, mapping policy effects, 
-        and visualizing how costs vary by manufacturer. In the second part, 
+        investigate general pricing changes during this period. In the second part,
+        we analyze pricing trends and how they vary by manufacturer. In the final part, 
         we put these prices in context of the users of Medicare, mainly 
         elderly age 65+. We identify the top 5 chronic conditions affecting 
-        this group, and group drug pricing trends by diseases they treat. 
+        this group, and group drug pricing trends by diseases they treat.
+        Our goal is to make drug pricing trends more 
+        transparent by identifying price hikes and
+        and visualizing how costs vary by manufacturer and by diseases.
         This website features both accessible dashboards and static visuals 
         that help both policy makers and patients understand where spending 
         is growing and why.</p>
@@ -33,6 +34,9 @@
         <a href=https://www.medicare.gov/health-drug-plans/part-d>Medicare.gov website</a>
         and explore their <a href=https://www.medicare.gov/publications/11109-your-guide-to-medicare-prescription-drug-coverage.pdf>
             Guide to Medicare Drug Coverage</a> for rates and implications and how to enroll.
+            To learn more about top diseases affecting elderly adults, you can visit the
+        <a href=https://www.ncoa.org/article/the-top-10-most-common-chronic-conditions-in-older-adults/>National Council on Aging website</a>.
+        To access the WHO ATC Index, you can visit <a href=https://www.who.int/tools/atc-ddd-toolkit/atc-classification/>the WHO ATC Index</a>.
 
     <h3>Introduction to the data</h3>
 
@@ -98,23 +102,26 @@
             to long format, creating separate rows for each year's pricing data. This 
             transformation allows us to analyze year-over-year price changes more effectively. 
             Next, we identified and removed outlier prices using the Outlier_Flag variable 
-            provided in the dataset, which resulted in more representative average drug prices.
+            provided in the dataset, which resulted in more representative average drug prices. 
+            Additionally, we filtered the data to include only rows where Mftr_Name was 'Overall', 
+            as these rows aggregate prices across all manufacturers for each generic drug. 
+            This approach prevents double-counting prices when a drug has multiple manufacturers.
         </p>
 
-        <h4> Focus on Chronic Conditions</h4>
         <p>To study the population that Medicare primarily serves—elderly adults age 65+ 
             and people with disabilities—we focused on the top 5 chronic conditions that 
-            affect elderly adults most based on the National Council on Aging’s article. 
+            affect elderly adults most based on the <a href=https://www.ncoa.org/article/the-top-10-most-common-chronic-conditions-in-older-adults/>National Council on Aging’s article.</a>
             These conditions are hypertension(61%), high cholesterol(55%), arthritis(51%), 
             obesity(40%), and diabetes(24%). We used the ATC (Anatomical Therapeutic Chemical) 
             classification system, developed by the World Health Organization, to identify 
             relevant medications. This system organizes drugs based on the body system they 
-            target and their therapeutic purpose. Using the WHO ATC Index , we selected drug 
+            target and their therapeutic purpose. Using the <a href=https://www.who.int/tools/atc-ddd-toolkit/atc-classification/> WHO ATC Index</a>, we selected drug 
             classes associated with each of the five chronic conditions. We then developed a 
             Python script (build_atc_mapping.py) to systematically match ATC disease prefixes 
             to generic drug names in our dataset. For example, drugs with ATC codes beginning 
-            with "C09" (agents acting on the renin-angiotensin system) were mapped to 
-            hypertension, while "A10" codes (drugs used in diabetes) were mapped to diabetes 
+            with "<a href=https://mor.nlm.nih.gov/RxClass/search?query=C09%7CATC1-4&searchBy=class&sourceIds=&drugSources=atc1-4%7Catcprod%2Cepc%7Cdailymed%2Cdisease%7Cmedrt%2Cchem%7Cdailymed%2Cmoa%7Cdailymed%2Cpe%7Cdailymed%2Cpk%7Cmedrt%2Ctc%7Cfmtsme%2Cva%7Cva%2Cdispos%7Csnomedct%2Cstruct%7Csnomedct%2Cschedule%7Crxnorm%2Ccvx%7Ccdc#/>C09</a>" 
+            (agents acting on the renin-angiotensin system) were mapped to 
+            hypertension, while "<a href=https://mor.nlm.nih.gov/RxClass/search?query=A10%7CATC1-4&searchBy=class&sourceIds=&drugSources=atc1-4%7Catcprod%2Cepc%7Cdailymed%2Cdisease%7Cmedrt%2Cchem%7Cdailymed%2Cmoa%7Cdailymed%2Cpe%7Cdailymed%2Cpk%7Cmedrt%2Ctc%7Cfmtsme%2Cva%7Cva%2Cdispos%7Csnomedct%2Cstruct%7Csnomedct%2Cschedule%7Crxnorm%2Ccvx%7Ccdc/>A10</a>" codes (drugs used in diabetes) were mapped to diabetes 
             medications. All subsequent analyses are based on ATC coding of reported medications. </p>
 
         <h3>Overview of the Pricing Trends</h3>
@@ -138,14 +145,55 @@
         </div>
 
         <h3>Pricing Trends by Manufacturer</h3>
+        <p>
+          To better understand Medicare drug pricing trends, we examined the spending patterns of pharmaceutical manufacturers directly.
+        </p>
 
         <div class='center' style="text-align:center;">
             <iframe src="stacked_bar.html" width="100%" height="600px" frameborder="0"></iframe>
+            <p>Comparing generic versus brand drugs, total spending on brand drugs is consistently much higher than on generics.
+              This difference reflects the fact that branded drugs are typically protected by patents, giving manufacturers the ability and incentive to set higher prices.
+              Our analysis also highlights that spending for both brand and generic drugs increases steadily over time, with the relative proportion between them remaining fairly consistent.
+            </p>
         </div>
 
         <div class='center' style="text-align:center;">
-          <div class='tableauPlaceholder' id='viz1764204274693' style='position: relative'><noscript><a href='#'><img alt='Manufacturer Total Spending Treemap ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='medicare_project&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1764204274693');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-          
+          <div class='tableauPlaceholder' id='viz1764204274693' style='position: relative; width:100%; max-width:1000px; margin:0 auto;'>
+            <noscript>
+              <a href='#'>
+                <img alt='Manufacturer Total Spending Treemap' 
+                    src='https://public.tableau.com/static/images/me/medicare_project/Sheet1/1_rss.png' 
+                    style='border: none; width:100%;'/>
+              </a>
+            </noscript>
+            <object class='tableauViz' style='display:none; width:100%; height:600px;'>
+              <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+              <param name='embed_code_version' value='3' /> 
+              <param name='site_root' value='' />
+              <param name='name' value='medicare_project/Sheet1' />
+              <param name='tabs' value='no' />
+              <param name='toolbar' value='yes' />
+              <param name='static_image' value='https://public.tableau.com/static/images/me/medicare_project/Sheet1/1.png' /> 
+              <param name='animate_transition' value='yes' />
+              <param name='display_static_image' value='yes' />
+              <param name='display_spinner' value='yes' />
+              <param name='display_overlay' value='yes' />
+              <param name='display_count' value='yes' />
+              <param name='language' value='en-US' />
+            </object>
+          </div>
+
+          <script type='text/javascript'>
+            var divElement = document.getElementById('viz1764204274693');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            vizElement.style.display = 'block';         // show the viz
+            vizElement.style.width = '100%';            // full width
+            vizElement.style.height = '600px';          // fixed height, remove aspect ratio multiplier
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+          </script>
+
           <p>The treemap highlights the concentration of Medicare drug spending among a few dominant pharmaceutical manufacturers.
             While users can interact with the visualization to filter by disease category, the overall pattern remains consistent: a small number of major manufacturers account for the majority of spending, while smaller firms share the remainder.
             This pattern is especially pronounced when focusing on chronic diseases, which are highly relevant to Medicare coverage, emphasizing the outsized influence of top manufacturers in these therapeutic areas.</p>
@@ -153,8 +201,10 @@
 
         <h3>Pricing Trends by Disease Condition</h3>
 
-        <div>
-            <iframe src="altair.html" width="100%" height="600px" frameborder="0"></iframe>
+
+        <div class='center' style="text-align:center;">
+            <iframe src="altair.html" width="100%" height="400px" frameborder="0"></iframe>
+            
             <p style="margin-top:10px;">
 
                 Using the dropdown menu, we can examine each of the five chronic conditions individually and compare 
@@ -212,20 +262,23 @@
         <h3>Summary and additional work</h3>
 
         <p>
-            In this visualization analysis, we try to explore the US 
-            unemployment rate across states. We also examine the relation
-            between unemployment rate and other social factors. 
+            In this visualization analysis, we tried to explore Medicare Drug 
+            D prices between 2019-2023 and looked at the overall trends over time. 
+            We looked at how costs vary by brand versus generic name and by each 
+            manufacturer. We also looked at drug spending by top diseases affecting 
+            elderly adults age 65+. 
         </p>
         <p>
-            Unfortunately, this is the 2010 data thus may be different 
-            than the current economics status. Also, unemployment rate 
-            may fluctuate seasonally thus adding a time series analysis
-            will be more informative. 
+            Unfortunately, this data is from 2019-2023, and not reflective of 
+            current drug prices. Additionally, there were many rows of 
+            data with NaN values, missing price values that were not accounted 
+            for so actual prices may be slightly higher than what we have collected.  
         </p>
 
-        <p>If you are interested in the project and want to share more
-            opinions or resource about the project, please contact:
-            Xiaoyi Yang (xiaoy.yang@northeastern.edu)
+        <p>If you are interested in the project and want to share more opinions 
+            or resources about the project, please contact: Connie Too 
+            (too.c@northeastern.edu), Spring Yan (yan.sp@northeastern.edu), 
+            or Tiffany Zhang(zhang.tiffa@northeastern.edu).
         </p>
 
 </body>
