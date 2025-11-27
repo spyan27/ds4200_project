@@ -15,7 +15,7 @@ let svg = d3.select('body')
   .append('svg')
   .attr('width', width)
   .attr('height', height)
-  .style('background', 'lightyellow');  
+  .style('background', 'white');  
 
 // load data
 d3.csv("yearly_avg_price_trends.csv").then(data => {
@@ -72,7 +72,7 @@ d3.csv("yearly_avg_price_trends.csv").then(data => {
     .attr("r", 4)
     .attr("cx", d => xScale(d.year))
     .attr("cy", d => yScale(d.avg_price))
-    .attr("fill", "red");
+    .attr("fill", "green");
 
   // line generator
   let line = d3.line()
@@ -84,7 +84,7 @@ d3.csv("yearly_avg_price_trends.csv").then(data => {
   svg.append("path")
     .datum(data)
     .attr("fill", "none")
-    .attr("stroke", "red")
+    .attr("stroke", "green")
     .attr("stroke-width", 1.5)
     .attr("d", line);
 
