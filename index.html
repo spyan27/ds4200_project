@@ -117,12 +117,11 @@
             hypertension, while "A10" codes (drugs used in diabetes) were mapped to diabetes 
             medications. All subsequent analyses are based on ATC coding of reported medications. </p>
 
-
         <h3>Overview of the Pricing Trends</h3>
         
         <div class = 'container'>
             <div class = 'image'>
-                <img src="d3-lineplot-avg-drug-price.png" width="100%" height="500px" alt="Average Drug Price 2019-2023">
+                <img src="d3-lineplot-avg-drug-price.png" width="100%" height="450px" alt="Average Drug Price 2019-2023">
             </div>
             <div class = 'text'>
                 <p> First, we present an overview of the average drug price
@@ -138,70 +137,35 @@
             </div>            
         </div>
 
-        <div class = 'center'>
-                <iframe src="altair.html" width="100%" height="600px" frameborder="0"></iframe>
+        <div class='center' style="text-align:center;">
+            <iframe src="stacked_bar.html" width="100%" height="600px" frameborder="0"></iframe>
         </div>
 
-        <div class='tableauPlaceholder' id='viz1764032155428' style='position: relative'><noscript><a href='#'><img alt='Manufacturer Total Spending Treemap ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='medicare_project&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1764032155428');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+        <h3>Overview of the Pricing Trends</h3>
 
-        <div>
-
+        <div class='center' style="text-align:center;">
+            <iframe src="altair.html" width="100%" height="600px" frameborder="0"></iframe>
+            <p style="margin-top:10px;">
+                Using the dropdown menu, we can look at each of the five chronic conditions individually 
+                and compare their total claims and average spending per claim from 2019 to 2023. Looking 
+                at the visualization, we can see that for hypertension, the total number of claims is the 
+                highest every year and increases slightly from around 253 million claims in 2019 to around 
+                270 million claims in 2023, a growth of roughly 6.7%. However, the average spending per claim 
+                rises much more sharply, from around $1,501 in 2019 to about $2,003 in 2023, increasing 
+                roughly 33%. This suggests that while the overall use of hypertension medications remained 
+                relatively stable with a slight increase, the cost per prescription fill has grown 
+                significantly over time.
+            </p>
         </div>
 
-        
-        <h3> The relationship between unemployment rate and other social factors</h3>
-
-        <div class = 'container'>
-            <div class = 'text'>
-                <p>Moreover, we also want to examine the relationship between
-                    unemployment rate and other social factors in the data. All 
-                    features are numerical thus we firts create a correlation
-                    plot to examine whether there are linear relationship between 
-                    unemployment rate with other social factors. Notice that if 
-                    the correlation is small, it only means that there is no potential
-                    linear relationship between two features. 
-                </p>
-                <p>
-                    Based on the correlation plot, among all the features, poverty 
-                    has the strongest correlation with the unemployment rate since
-                    they are both related to the economics. The percentage of single 
-                    parents is the second important feature which inidicates the 
-                    stability of family is also strongly related to the job market. 
-                    The increase of unemployment rate may also related to the increase 
-                    of violent crime and murder rate but has a negative relationship
-                    with education indicators, like the percentage of people who go to
-                    high school and college. The only variable that has no direct linear
-                    relation with the unemployment rate is Metropolitan, which means the 
-                    percent of residents living in a metropolitan area. 
-                </p>
-            </div>
-            <div class = 'image'>
-                <img src="correlation_plot.png" width="100%" height="500px" frameborder="0"></img>
-            </div>   
-        </div>
-
-        <p>We have also create an interactive scatter plot so that 
-            our users can select a couple of states within
-            a certain range of unemployment rate and to see how the 
-            other factors may be related here. 
-        </p>
-
-        <div class = 'center'>
-            <iframe src="scatter.html" width="85%" height="550px" frameborder="0"></iframe>
-        </div>
-
-        <h3>Compare MA to the other states</h3>
-
-        <p>
-            Since we are in MA, thus we want to take a closer look between
-            MA and other states. We create the following interactive plot
-            such that user can choose another state to compare with MA and 
-            show the bar plot on each factors. 
-        </p>
-
-        <div class = 'center'>
-            <iframe src="summary.html" width="95%" height="300px" frameborder="0"></iframe>
-        </div>
+      <div class='center' style="text-align:center;">
+          <div class='tableauPlaceholder' id='viz1764204274693' style='position: relative'><noscript><a href='#'><img alt='Manufacturer Total Spending Treemap ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='medicare_project&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1764204274693');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+          
+          <p>The treemap highlights the concentration of Medicare drug spending among a small group of major pharmaceutical manufacturers.
+            Even after filtering by disease category, the same pattern persists: a few dominant firms account for the majority of spending, while numerous smaller manufacturers share the remaining portion.
+            This visualization effectively emphasizes how market power in drug pricing is concentrated within a limited set of companies.
+          </p>
+      </div>
 
         <h3>Summary and additional work</h3>
 
