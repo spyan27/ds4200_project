@@ -13,10 +13,12 @@
     <h3>Overall Introduction</h3>
 
     <p>This project explores how the prices of patient-administered 
-        drugs covered under Medicare Part D changed from 2019 to 2023. 
-        In the first part, we want to investigate the changes through 
-        the Covid-19, manufacturer-level shifts, and evolving health 
-        policy landscapes. Our goal is to make drug pricing trends more 
+        drugs covered under Medicare Part D changed from 2019 to 2023.
+        Medicare Part D is defined as prescription drug coverage for Medicare 
+        enrollees. Original Medicare (Parts A & B) does NOT cover prescription 
+        medications, so Part D fills that gap. In the first part, we want to 
+        investigate general pricing changes during this period. 
+        Our goal is to make drug pricing trends more 
         transparent by identifying price hikes, mapping policy effects, 
         and visualizing how costs vary by manufacturer. In the second part, 
         we put these prices in context of the users of Medicare, mainly 
@@ -24,20 +26,21 @@
         this group, and group drug pricing trends by diseases they treat. 
         This website features both accessible dashboards and static visuals 
         that help both policy makers and patients understand where spending 
-        is growing and why. (can add more details later)</p>
+        is growing and why.</p>
     
 
-    <p>To learn more about the Medicare Drug D data, go to  rate and its implications,
-         you can visit the <a href=https://www.medicare.gov/health-drug-plans/part-d>Medicare.gov website</a>.
+    <p>To learn more about the Medicare Drug D data, you can visit the 
+        <a href=https://www.medicare.gov/health-drug-plans/part-d>Medicare.gov website</a>
+        and explore their <a href=https://www.medicare.gov/publications/11109-your-guide-to-medicare-prescription-drug-coverage.pdf>
+            Guide to Medicare Drug Coverage</a> for rates and implications and how to enroll.
 
-    <h3>Introduction to the data (to be replaced)</h3>
+    <h3>Introduction to the data</h3>
 
-    <p> Our analysis makes use of two datasets. the first data is 
-        a data set called `us_statewide_crime.csv` which contains 
-        the following crime statistics for all US states and the 
-        District of Columbia in 2010. The data has 50 rows with 9 
-        features. The detail information about the features are listed
-        in the following table:</p>  
+    <p> Our analysis makes use of one main dataset called medicare_drug_spending.csv, which 
+        contains the following Medicare Drug D pricing data from 2019-2023. The original 
+        dataset’s full data dictionary can be found <a href=https://data.cms.gov/sites/default/files/2025-05/Medicare%20Part%20D%20Spending%20by%20Drug%20Data%20Dictionary%2020250425_508.pdf>here</a>. 
+        Key information about the features used in our analysis is listed in the following table:
+    </p>  
 
         <div class="center">
         <table class="tg">
@@ -49,56 +52,70 @@
             </thead>
             <tbody>
               <tr>
-                <td class="tg-0lax">State</td>
-                <td class="tg-0lax">State name</td>
+                <td class="tg-0lax">Brnd_Name</td>
+                <td class="tg-0lax">Brand Name – The trademarked name of the drug filled.</td>
               </tr>
               <tr>
-                <td class="tg-0lax">Violent_Crime</td>
-                <td class="tg-0lax">Violent crime rate (per 100,000 residents)</td>
+                <td class="tg-0lax">Gnrc_Name</td>
+                <td class="tg-0lax">Generic Name – The chemical ingredient of the drug rather than the trademarked brand name.</td>
               </tr>
               <tr>
-                <td class="tg-0lax">Murder_Rate</td>
-                <td class="tg-0lax">Murder rate (per 100,000 residents)</td>
+                <td class="tg-0lax">Tot_Mftr</td>
+                <td class="tg-0lax">Number of Manufacturers – Total number of manufacturers producing the drug.
+
+                </td>
               </tr>
               <tr>
-                <td class="tg-0lax">Poverty</td>
-                <td class="tg-0lax">Percent of residents below the poverty rate</td>
+                <td class="tg-0lax">Tot_Spndng_[Year]</td>
+                <td class="tg-0lax">Total Spending – Aggregate Medicare Part D spending for the drug in a given benefit year.
+
+                </td>
               </tr>
               <tr>
-                <td class="tg-0lax">High_School</td>
+                <td class="tg-0lax">Tot_Benes_[Year]                </td>
                 <td class="tg-0lax">Percent of residents with a high school degree</td>
               </tr>
               <tr>
-                <td class="tg-0lax">College</td>
-                <td class="tg-0lax">Percent of residents with a four-year college degree</td>
+                <td class="tg-0lax">Avg_Spnd_Per_Dsg_Unt_Wghtd_[Year]</td>
+                <td class="tg-0lax">Average Spending per Dosage Unit (Weighted) – 
+                    Total Part D drug spending divided by total dosage units, 
+                    weighted by proportion of total claims.</td>
               </tr>
               <tr>
-                <td class="tg-0lax">Single_Parent</td>
-                <td class="tg-0lax">Percent of children living in single parent families</td>
+                <td class="tg-0lax">Avg_Spnd_Per_Clm_[Year]</td>
+                <td class="tg-0lax">Average Spending per Claim – Total drug spending divided by the number of prescription claims.</td>
               </tr>
               <tr>
-                <td class="tg-0lax">Unemployed</td>
-                <td class="tg-0lax">Unemployment rate</td>
-              </tr>
-              <tr>
-                <td class="tg-0lax">Metropolitan</td>
-                <td class="tg-0lax">Percent of residents living in a metropolitan area</td>
+                <td class="tg-0lax">Outlier_Flag_[Year]</td>
+                <td class="tg-0lax">Outlier Flag – “1” when a drug’s average spending per dosage unit is substantially impacted by outlier records in that year.</td>
               </tr>
             </tbody>
             </table>
         </div>
-        <p>Meanwhile, we also believe that the geographical 
-            information is important when evaluating the unemployment
-            rate. Therefore, we also make use of geographical information 
-            on <a href="https://www.naturalearthdata.com/downloads/">Natural Earth</a>. 
-            The website provides the geographical information for making maps for US states. 
+        <h4> Data Cleaning and Preparation</h4>
+        <p>To create better data visualizations, we performed several cleaning steps 
+            on this dataset. First, we restructured the data by converting it from wide 
+            to long format, creating separate rows for each year's pricing data. This 
+            transformation allows us to analyze year-over-year price changes more effectively. 
+            Next, we identified and removed outlier prices using the Outlier_Flag variable 
+            provided in the dataset, which resulted in more representative average drug prices.
         </p>
 
-        <p>To make a better data visualization, we remove the Alaska and Hawaii
-            from the data. Following is an interactive map for the 
-            lower 48 states in US. User can zoom in the map. The color
-            indicates the unemployment rate for each state. When click any 
-            state, other social factors will be revealed for the state. </p>
+        <h4> Focus on Chronic Conditions</h4>
+        <p>To study the population that Medicare primarily serves—elderly adults age 65+ 
+            and people with disabilities—we focused on the top 5 chronic conditions that 
+            affect elderly adults most based on the National Council on Aging’s article. 
+            These conditions are hypertension(61%), high cholesterol(55%), arthritis(51%), 
+            obesity(40%), and diabetes(24%). We used the ATC (Anatomical Therapeutic Chemical) 
+            classification system, developed by the World Health Organization, to identify 
+            relevant medications. This system organizes drugs based on the body system they 
+            target and their therapeutic purpose. Using the WHO ATC Index , we selected drug 
+            classes associated with each of the five chronic conditions. We then developed a 
+            Python script (build_atc_mapping.py) to systematically match ATC disease prefixes 
+            to generic drug names in our dataset. For example, drugs with ATC codes beginning 
+            with "C09" (agents acting on the renin-angiotensin system) were mapped to 
+            hypertension, while "A10" codes (drugs used in diabetes) were mapped to diabetes 
+            medications. All subsequent analyses are based on ATC coding of reported medications. </p>
 
         <h3>Overview of the Pricing Trends</h3>
         
@@ -110,11 +127,12 @@
                 <p> First, we present an overview of the average drug price
                     from 2019 to 2023. The average price shows a steady increase
                     in average Part D drug prices from 2019 to 2023, with average
-                    prices rising from approximately $305 to $563 over this period.
+                    prices rising from approximately $273 to $537 over this period.
+                    There is a steeper rise of the average price from 2021 to 2022,
+                    from $244 to $464, representing a nearly 90% increase in just one year.
                     We hypothesize that this increase may be attributed to several
                     factors, including inflationary pressures, supply chain disruptions,
                     and changes in healthcare policies during the COVID-19 pandemic.
-                    We will explore that further in later sections.
                 </p>
             </div>            
         </div>
