@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unemployment rate study</title>
+    <title>OpenRx</title>
     <link href="style.css" rel="stylesheet" />
 </head>
 <body>
@@ -145,33 +145,132 @@
         </div>
 
         <h3>Pricing Trends by Manufacturer</h3>
+        <p>
+          To better understand Medicare drug pricing trends, we examined the spending patterns of pharmaceutical manufacturers directly.
+        </p>
 
         <div class='center' style="text-align:center;">
             <iframe src="stacked_bar.html" width="100%" height="600px" frameborder="0"></iframe>
+            <p>Comparing generic versus brand drugs, total spending on brand drugs is consistently much higher than on generics.
+              This difference reflects the fact that branded drugs are typically protected by patents, giving manufacturers the ability and incentive to set higher prices.
+              Our analysis also highlights that spending for both brand and generic drugs increases steadily over time, with the relative proportion between them remaining fairly consistent.
+            </p>
         </div>
 
         <div class='center' style="text-align:center;">
-          <div class='tableauPlaceholder' id='viz1764204274693' style='position: relative'><noscript><a href='#'><img alt='Manufacturer Total Spending Treemap ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='medicare_project&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;me&#47;medicare_project&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1764204274693');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-          
+          <p>Digging deeper, we also found greater insight when comparing the top manufactuers by total spending across identified conditions.
+            Both the treemap and stacked area charts below offer a better perspective on how difffering market concentration and monoploy tendencies could affect drug pricing. 
+          </p>
+          <div class='tableauPlaceholder' id='viz1764204274693' style='position: relative; width:100%; max-width:1000px; margin:0 auto;'>
+            <noscript>
+              <a href='#'>
+                <img alt='Manufacturer Total Spending Treemap' 
+                    src='https://public.tableau.com/static/images/me/medicare_project/Sheet1/1_rss.png' 
+                    style='border: none; width:100%;'/>
+              </a>
+            </noscript>
+            <object class='tableauViz' style='display:none; width:100%; height:600px;'>
+              <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> 
+              <param name='embed_code_version' value='3' /> 
+              <param name='site_root' value='' />
+              <param name='name' value='medicare_project/Sheet1' />
+              <param name='tabs' value='no' />
+              <param name='toolbar' value='yes' />
+              <param name='static_image' value='https://public.tableau.com/static/images/me/medicare_project/Sheet1/1.png' /> 
+              <param name='animate_transition' value='yes' />
+              <param name='display_static_image' value='yes' />
+              <param name='display_spinner' value='yes' />
+              <param name='display_overlay' value='yes' />
+              <param name='display_count' value='yes' />
+              <param name='language' value='en-US' />
+            </object>
+          </div>
+
+          <script type='text/javascript'>
+            var divElement = document.getElementById('viz1764204274693');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            vizElement.style.display = 'block';         // show the viz
+            vizElement.style.width = '100%';            // full width
+            vizElement.style.height = '600px';          // fixed height, remove aspect ratio multiplier
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+          </script>
+
           <p>The treemap highlights the concentration of Medicare drug spending among a few dominant pharmaceutical manufacturers.
             While users can interact with the visualization to filter by disease category, the overall pattern remains consistent: a small number of major manufacturers account for the majority of spending, while smaller firms share the remainder.
             This pattern is especially pronounced when focusing on chronic diseases, which are highly relevant to Medicare coverage, emphasizing the outsized influence of top manufacturers in these therapeutic areas.</p>
       </div>
 
+       <div class='center' style="text-align:left;">
+            <div style="text-align: center;">
+              <iframe src="interactive_area.html" width="90%" height="500px" frameborder="0"></iframe>
+          </div>
+            <p>This stacked area chart shows the top manufacturers' total spending for different health conditions. We can see clear differences in market concentration across conditions:</p>
+              <ul>
+                  <li>Highly concentrated markets are observed in <strong>Diabetes</strong> where the top 5 manufacturers account for 97.4% of total spending and similarly for <strong>Obesity</strong> they account for 88.7% of total spending. <strong>Arthritis</strong> shows a moderate concentration, with the top manufacturers holding 67.4% of total spending.</li>
+                  <li>Less concentrated markets, such as <strong>High Cholesterol</strong> and <strong>Hypertension</strong>, exhibit more competition, as spending is more evenly distributed with the top 5 manufacturers holding around 45.2% and 37.2% of total spending respectively.</li>
+              </ul>
+            <p>Overall, the chart highlights which therapeutic areas are dominated by a few key players versus those with a more competitive landscape.</p>
+        </div>
+
         <h3>Pricing Trends by Disease Condition</h3>
 
+
         <div class='center' style="text-align:center;">
-            <iframe src="altair.html" width="100%" height="600px" frameborder="0"></iframe>
+            <iframe src="altair.html" width="100%" height="400px" frameborder="0"></iframe>
+            
             <p style="margin-top:10px;">
-                Using the dropdown menu, we can look at each of the five chronic conditions individually 
-                and compare their total claims and average spending per claim from 2019 to 2023. Looking 
-                at the visualization, we can see that for hypertension, the total number of claims is the 
-                highest every year and increases slightly from around 253 million claims in 2019 to around 
-                270 million claims in 2023, a growth of roughly 6.7%. However, the average spending per claim 
-                rises much more sharply, from around $1,501 in 2019 to about $2,003 in 2023, increasing 
-                roughly 33%. This suggests that while the overall use of hypertension medications remained 
-                relatively stable with a slight increase, the cost per prescription fill has grown 
-                significantly over time.
+
+                Using the dropdown menu, we can examine each of the five chronic conditions individually and compare 
+                their total claims and average spending per claim from 2019 to 2023. Overall, the visualizations show 
+                that while total prescription claims generally increase slowly over time, average spending per claim grows 
+                at a much faster rate, which suggests rising medication costs rather than large changes in the amount of medications being used.
+                
+                
+                <h4>Hypertension</h4>
+                
+                Hypertension has the highest total number of claims every year, increasing slightly from around 253 million 
+                in 2019 to about 270 million in 2023 (a growth of roughly 6.7%). In contrast, the average spending per claim 
+                rises much more sharply, from about $1,501 in 2019 to approximately $2,003 in 2023 which is an increase of roughly 33%. 
+                This suggests that while overall use of hypertension medications remained relatively stable, the cost per prescription 
+                fill has increased significantly over time.
+
+
+                <h4>Arthritis</h4>
+                
+                Arthritis shows a gradual increase in total claims, rising from roughly 48 million in 2019 to about 54 million 
+                in 2023, a growth of around 12.5%. Its average spending per claim is the highest among all five conditions, 
+                starting at $6,317 in 2019, dipping slightly in 2020, and then increasing substantially to $9,627 by 2023, an increase 
+                of about 52%. This indicates that arthritis medications are not only expensive but have become even more costly over 
+                time, despite only modest growth in the number of prescriptions.
+
+
+                <h4>High Cholesterol</h4>
+                
+                High cholesterol exhibits the largest increase in total claims, jumping from around 88 million in 2019 to 119 million in 2023, 
+                an increase of about 35%. The average spending per claim remains fairly stable from 2019 to 2021 (roughly $2,300 to $2,400), 
+                then rises sharply to about $3,774 in 2022 and remains around that level in 2023, a jump of roughly 55% from 2021. This pattern 
+                suggests that the spike in spending is driven by higher medication costs starting in 2022, rather than by changes in prescription volume.
+
+
+                <h4>Obesity</h4>
+                
+                Obesity is the only condition where total claims remain nearly flat, decreasing slightly from about 3.247 million in 2019 to 
+                3.207 million in 2023, a small drop of around 1.2%. However, the average spending per claim increases from roughly $936 in 2019 
+                to about $1,178 in 2023, an increase of approximately 26%. This indicates that even though medication use for obesity has not 
+                grown, the cost per claim has steadily increased, revealing how the cost per prescription fill is going up even though demand has not changed much.
+
+                
+                <h4>Diabetes</h4>
+
+                Diabetes shows a steady and substantial increase in total claims, rising from about 36 million in 2019 to roughly 55 million in 2023, an 
+                increase of around 53%. In contrast, average spending per claim grows more slowly, from approximately $607 in 2019 to about $710 in 2023, 
+                a rise of roughly 17%. This pattern suggests that the growth in overall spending on diabetes medications is primarily driven by a higher number of 
+                prescriptions rather than sharp increases in the cost per claim, making it the only condition among the five where prescription volume plays a 
+                larger role than price in total spending growth.
+
+
             </p>
         </div>
 
